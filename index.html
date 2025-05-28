@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulação de Pop-ups</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #111;
+      font-family: Arial, sans-serif;
+    }
+
+    .popup {
+      position: absolute;
+      width: 300px;
+      height: 150px;
+      background: #fff;
+      border: 3px solid red;
+      box-shadow: 0 0 15px red;
+      padding: 15px;
+      z-index: 999;
+      animation: shake 0.3s infinite;
+    }
+
+    .popup h4 {
+      margin: 0;
+      color: red;
+      font-size: 18px;
+    }
+
+    .popup p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(0px, 0px); }
+      25% { transform: translate(3px, -3px); }
+      50% { transform: translate(-3px, 3px); }
+      75% { transform: translate(3px, 3px); }
+      100% { transform: translate(0px, 0px); }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function criarPopup() {
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+    popup.style.top = Math.random() * (window.innerHeight - 160) + 'px';
+    popup.style.left = Math.random() * (window.innerWidth - 320) + 'px';
+
+    popup.innerHTML = `
+      <h4>⚠️ Alerta!</h4>
+      <p>Seu dispositivo pode estar em risco!</p>
+    `;
+    
+    document.body.appendChild(popup);
+  }
+
+  // Criar múltiplos popups a cada 800ms
+  setInterval(() => {
+    criarPopup();
+  }, 800);
+</script>
+
+</body>
+</html>
